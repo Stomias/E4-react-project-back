@@ -57,25 +57,32 @@ export class EntrainementsService {
   async findOneTraining(idTraining) {
     // On récupère les exercices d'un entrainement
     const query = await getManager().query(`
-    SELECT Libelle_Exercice, Famille_Exercice, Difficulte, Charge, combinaisons.Temps, combinaisons.idExercice
+    SELECT Libelle_Exercice, Famille_Exercice, Difficulte, Charge, combinaisons.Temps, combinaisons.idExercice, combinaisons.Numero_Exercice
     FROM combinaisons
     INNER JOIN exercices ON exercices.IdExercice = combinaisons.IdExercice
     WHERE 
-      combinaisons.IdEntrainement = 
-    ` + idTraining)
-
-    // TODO récupère la liste des exercices (tb relation)
-
-    
+      combinaisons.IdEntrainement = ${idTraining}
+    ORDER BY 
+      combinaisons.Numero_Exercice
+    `);
     return query;
-    return '';
   }
 
   update(id: number, updateTrainingDto: UpdateTrainingDto) {
     return `This action updates a #${id} training`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} training`;
+  async remove(id: number) {
+    try {
+      // On récupère l'entrainement que l'on souhaite supprimer
+      const entrainement = await this.entrainementsRepository.find({idEntrainement: id});
+      // Ainsi que les combinaisons qui lui sont associées
+      const exercices = await this.combinaisonsRepository.find({idEntrainement: id});
+      // Puis on supprime le tout
+      await this.combinaisonsRepository.remove(exercices);
+      await this.entrainementsRepository.remove(entrainement);
+    } catch (error) {
+      return error;
+    }
   }
 }

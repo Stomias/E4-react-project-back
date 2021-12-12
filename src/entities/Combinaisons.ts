@@ -12,4 +12,7 @@ export class Combinaisons {
 
   @Column('int', { name: 'Temps' })
   temps: number;
+
+  @Column('int', { name: 'Numero_Exercice' })
+  ordre: number;
 }

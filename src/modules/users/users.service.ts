@@ -17,7 +17,6 @@ export class UsersService {
       const newUser = await this.usersRepository.create(createUserDto);
       await this.usersRepository.save(newUser);
       // Enlever les infos sensibles avant de renvoyer
-      newUser.idUser = undefined;
       newUser.identifiant = undefined;
       newUser.motDePasse = undefined;
       // Renvoyer les infos utilisateurs
