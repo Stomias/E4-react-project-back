@@ -77,8 +77,6 @@ export class EntrainementsService {
 
   async update(idEntrainement: number, exercices: ExerciceTrainingDto[]) {
     try {
-      console.log(exercices);
-      
       // On récupère l'entrainement en question
       const entrainement: Entrainements = await this.entrainementsRepository.findOne({idEntrainement: idEntrainement});
       // On récupère les exercices afin de les supprimer

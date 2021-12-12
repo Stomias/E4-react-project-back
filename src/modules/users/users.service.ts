@@ -43,11 +43,9 @@ export class UsersService {
   }
 
   async updateUser(updateUserDto: UpdateUserDto) {
-    const user = await this.usersRepository.update(
+    await this.usersRepository.update(
       { ...updateUserDto },
       { identifiant: updateUserDto.identifiant },
     );
-    // TODO enlever les infos sensibles
-    return user;
   }
 }
