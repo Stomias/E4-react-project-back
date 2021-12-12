@@ -1,5 +1,4 @@
-import { Column, Entity, Index, ManyToOne } from 'typeorm';
-import { Exercices } from './Exercices';
+import { Column, Entity, Index } from 'typeorm';
 
 @Index('FK2_Combinaison', ['idExercice'], {})
 @Entity('combinaisons', { schema: 'dbsport' })
@@ -14,5 +13,5 @@ export class Combinaisons {
   temps: number;
 
   @Column('int', { name: 'Numero_Exercice' })
-  ordre: number;
+  numero_exercice: number;
 }
