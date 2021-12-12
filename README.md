@@ -2,14 +2,27 @@
 
 Backend de l'application de sport
 
-Endpoint:
-[TODO]
+## Endpoint:
+#### Exercices
+- GET       /exercises
+#### Utilisateurs
+- POST      /users/register
+- POST      /users/login
+- PUT       /users
+#### Entrainements
+- POST      /trainings
+- GET       /trainings/user/:idUser
+- GET       /trainings/:idEntrainement
+- PUT       /trainings/:idEntrainement
+- DELETE    /trainings/:idEntrainement
+
 
 ## Installation
 
 ```bash
 $ npm install
 ```
+Il faut aussi créer, grâce aux scripts de création et d'insertion, la base de données en local
 
 ## Running the app
 
