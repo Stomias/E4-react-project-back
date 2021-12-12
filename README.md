@@ -24,6 +24,21 @@ $ npm install
 ```
 Il faut aussi créer, grâce aux scripts de création et d'insertion, la base de données en local
 
+Enfin, il est important de créer un fichier ormconfig.json qui définira les accès à la BDD
+#### Exemple
+```bash
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "",
+    "database": "dbsport",
+    "entities": ["dist/**/*{.ts,.js}"],
+    "synchronize": true
+}
+```
+
 ## Running the app
 
 ```bash
